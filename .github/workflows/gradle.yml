@@ -65,3 +65,13 @@ jobs:
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+  
+  build_and_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build and Push Container to docker.io
+        uses: GlueOps/github-actions-build-push-containers@v0.3.7
+        with:
+          registry: "docker.io"
+          dockerhub_username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          dockerhub_password: ${{ secrets.DOCKER_HUB_TOKEN }}
